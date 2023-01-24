@@ -1,0 +1,275 @@
+
+<%- include('../user/partials/head.ejs') %>
+
+<body>
+
+  <%- include('../user/partials/navigation.ejs') %>
+
+
+
+
+  <!--================Cart Area =================-->
+  <section class="cart_area padding_top">
+    <div class="container">
+      <div class="cart_inner">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if(cartz.cart.items.length===0 ){%>
+                <h5>Cart is Empty</h5>
+           <% }else{%>
+              <tr>
+                <% for(let i=0;i<cartz.cart.items.length;i++){ %>
+
+                  <% let cartItems = cartz.cart.items[i] %> 
+                <td>
+                  <div class="media">
+                    <div class="d-flex">
+                      <img width="150px" height="150px" src="/product_img/<%= cartItems.product_id.thumbnail %>" alt="" />
+                    </div>
+                    <div class="media-body">
+                      <p><%= cartItems.product_id.title %></p>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <h5><%= cartItems.product_id.price %></h5>
+                </td>
+
+                <td>
+                                 
+                  <div class="product_count">
+                      <input type="text" name="qty" id="<%= cartz.cart.items[i].product_id._id %>" maxlength="12" value="<%= cartItems.qty %>" title="Quantity:"
+                          class="input-text qty">
+                         
+                      <button 
+                          class="ti-angle-up"  onclick="changeQuantity('<%= cartz.cart.items[i].product_id._id %>','1')" type="button"><i class="lnr lnr-chevron-up"></i></button>
+                      <button 
+                          class="ti-angle-down"  onclick="changeQuantity('<%= cartz.cart.items[i].product_id._id %>','-1')" type="button"><i class="lnr lnr-chevron-down"></i></button>
+                  </div>
+              </td>
+              <td>
+
+                <!-- <td>
+                  <div class="product_count">
+                    <span class="input-number-decrement"> <i class="ti-angle-down"></i></span>
+                    <input class="input-number" type="text" value="1" min="0" max="10">
+                    <span class="input-number-increment"> <i class="ti-angle-up"></i></span>
+                  </div>
+                </td>
+                <td> -->
+                  <!-- <h5>$720.00</h5> -->
+                  <button class="btn btn-dark"  onclick="changeQuantity('<%= cartz.cart.items[i].product_id._id %>','-2')">REMOVE</button>
+                </td>
+              </tr>
+              <%}%>
+              <tr class="bottom_button">
+                <td>
+                  <!-- <a class="btn_1" href="#">Update Cart</a> -->
+                 
+                    
+                    <button class="btn_1" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                      Coupons
+                    </button>
+           
+                  <div class="collapse" id="collapseExample">
+                    <div class="card card-body">
+                 
+                        <% coupons.forEach((x)=>{%>
+                           <p><%= x.code %></p>
+                       <% }) %> 
+                    
+                    </div>
+                  </div>
+                </td>
+                <td></td>
+                <td></td>
+                <td>
+                  <!-- <div class="cupon_text float-right">
+                    <a class="btn_1" href="#">Close Coupon</a>
+                  </div> -->
+               <div class="cupon_text d-flex align-items-center">
+                  <form id="couponForm">
+                    <input type="text" id="code" name="code" placeholder="Coupon Code">
+                    <input type="text" name="userId" value="<%= id %>" hidden>
+                    <button type="submit" class="btn_1">Apply</button>
+                    <div id="success" class="alert alert-primary mt-2 ml-2" role="alert" style="display: none;">
+                        valid coupon!
+                      </div>
+                      <div id="error"  class="alert alert-danger " role="alert" style="display: none;">
+                        This is a Invalid coupon!
+                      </div>
+                 </form>
+               </div>
+
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td>
+                  <h5>Subtotal</h5>
+                </td>
+                <td>
+                  <h5 id="total"><%= cartz.cart.totalPrice %></h5>
+                </td>
+              </tr>
+              <!-- <tr class="shipping_area">
+                <td></td>
+                <td></td>
+                <td>
+                  <h5>Shipping</h5>
+                </td>
+                <td>
+                  <div class="shipping_box">
+                    <ul class="list">
+                      <li>
+                        <a href="#">Flat Rate: $5.00</a>
+                      </li>
+                      <li>
+                        <a href="#">Free Shipping</a>
+                      </li>
+                      <li>
+                        <a href="#">Flat Rate: $10.00</a>
+                      </li>
+                      <li class="active">
+                        <a href="#">Local Delivery: $2.00</a>
+                      </li>
+                    </ul>
+                    <h6>
+                      Calculate Shipping
+                      <i class="fa fa-caret-down" aria-hidden="true"></i>
+                    </h6>
+                    <select class="shipping_select">
+                      <option value="1">Bangladesh</option>
+                      <option value="2">India</option>
+                      <option value="4">Pakistan</option>
+                    </select>
+                    <select class="shipping_select section_bg">
+                      <option value="1">Select a State</option>
+                      <option value="2">Select a State</option>
+                      <option value="4">Select a State</option>
+                    </select>
+                    <input type="text" placeholder="Postcode/Zipcode" />
+                    <a class="btn_1" href="#">Update Details</a>
+                  </div>
+                </td>
+              </tr> -->
+              <% } %> 
+            </tbody>
+          </table>
+
+          <div class="checkout_btn_inner float-right">
+            <a class="btn_1" href="/home">Continue Shopping</a>
+            <button class="btn_1 checkout_btn_1" onclick="checkOut('<%= id %>')">Proceed to checkout</button>
+          </div>
+        </div>
+      </div>
+  </section>
+  <!--================End Cart Area =================-->
+
+  <%- include('../user/partials/end.ejs') %>
+
+  <script>
+       
+    function changeQuantity(proId,cnt){
+    let quantity = document.getElementById(proId).value
+    console.log(quantity)
+    quantity=parseInt(quantity)
+    let cont = parseInt(cnt)
+    $.ajax({
+        url:'/changeQty',
+        method:'POST',
+        data:{
+            productId:proId,
+            quantys:quantity,
+            count:cont
+        },
+        success:((response)=>{
+            if(response.access){
+                if(response.remove){
+                    swal(
+  'Deleted!',
+  'Your item has been deleted.',
+  'success'
+)
+              setTimeout(()=>location.reload(),2000)  
+               
+            }else{
+                document.getElementById(proId).value=response.status
+                document.getElementById('total').innerHTML=response.total
+            }
+            }else{
+                swal({
+title: 'Please Login!!',
+width: 600,
+padding: '3em',
+color: '#716add',
+background: '#fff url(https://cdn.dribbble.com/users/289158/screenshots/17424235/media/cbb5c66fa688ad46ea08f5f817d37a98.jpg?compress=1&resize=400x300&vertical=top)',
+backdrop: `
+rgba(0,0,123,0.4)
+url()
+left top
+no-repeat
+`
+})
+            }
+           
+        })
+    })
+    
+    }
+
+
+    let clicked = false
+    $('#couponForm').submit((e)=>{
+        e.preventDefault()
+     const code = document.getElementById('code').value
+     const total = document.getElementById('total').innerHTML
+     if(code == ""){
+      document.getElementById('error').style.display='inline'
+      setTimeout(()=> document.getElementById('error').style.display='none',2000)
+     }else{
+         $.ajax({
+            url:'/couponCheck',
+            method:'post',
+            dataType: "json",
+            encode: true,
+            data:
+        
+                $('#couponForm').serialize()+ `&total=${total}`
+            ,
+            success:((response)=>{
+                if(response.status && clicked==false){
+                    document.getElementById('success').style.display='inline'
+                    document.getElementById('total').innerHTML=response.total
+                    setTimeout(()=> document.getElementById('success').style.display='none',2000)
+                    clicked=true
+                }else{
+                    document.getElementById('error').innerHTML="Already Entered or Minimum Cart Amount is Less."
+                    document.getElementById('error').style.display='inline'
+                    setTimeout(()=> document.getElementById('error').style.display='none',2000)
+                }
+            })
+  })
+     }
+    })
+function checkOut(id){
+    const code = document.getElementById('code').value
+     const total = document.getElementById('total').innerHTML
+     location.href=`/checkout?user=${id}&code=${code}&total=${total}`
+}
+    
+</script>
+
+</body>
+
+</html>

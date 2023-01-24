@@ -1,0 +1,124 @@
+<%- include('../user/partials/head.ejs') %>
+
+<%- include('../user/partials/navigation.ejs') %>
+
+<!--================Home Banner Area =================-->
+<!-- breadcrumb start-->
+<!-- <section class="breadcrumb breadcrumb_bg">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="breadcrumb_iner">
+          <div class="breadcrumb_iner_item">
+            <h2>Wishlist</h2>
+            <p>Home <span>-</span>Wishlist Products</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+<!-- breadcrumb start-->
+
+<!--================Cart Area =================-->
+<section class="cart_area padding_top">
+  <div class="container">
+    <div class="cart_inner">
+      <% if (prd.productItems == 0) { %> 
+        <div class="col-12 text-center">
+          <h5>Wishlist is Empty</h5>
+        </div>
+      <% } else { %> 
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Product</th>
+              <th scope="col">Price</th>
+              <th scope="col">Update</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% prd.productItems.forEach(function(product){ %>
+            <tr>
+              <td>
+                <div class="media">
+                  <div class="d-flex">
+                    <img src="/product_img/<%= product.thumbnail %>" class="d-md-block d-none" style="width: 200px;" alt="" />
+                    <img src="" class="d-md-none d-block" style="width: 100%;" alt="" />
+                  </div>
+                  <div class="media-body">
+                    <p><%= product?.title %></p>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <h5>₹<%= product?.price %></h5>
+              </td>
+              <td>
+                <form action="/removewishlistproduct/<%= product?._id %>" method="post">
+                  <button type="submit" onclick="removeWishlist('<%= product._id %>')" class="btn btn-outline-danger " style="width: 7rem;">Remove</button>
+               </form>
+               <br>
+               <!-- <form action="/wishlistaddcart/<%= product?._id %>" method="post"> -->
+              
+                 <button type="submit" onclick="addCart('<%= product._id %>')" class="btn btn-outline-success" >Add to cart</button>
+              <!-- </form>  -->
+             </td>
+            </tr>
+            <% }) %> 
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <% } %>
+</section>
+<!--================End Cart Area =================-->
+
+<%- include('../user/partials/end.ejs') %>
+
+
+
+<script>
+  function addCart(proId){
+    
+    $.ajax({
+      url:'/addCart',
+      method:'post',
+      data:{
+        productId : proId
+      },
+      success:((response)=>{
+                  swal("successfully!", "You added product to Cart!", "success");
+                  setTimeout(()=>location.reload(),1000) 
+            if(response.access){
+            document.getElementById('count').innerHTML=response.count
+          document.getElementById(proId).value=response.status
+                  document.getElementById('total').innerHTML=response.total
+                  
+          }else{
+            swal({
+title: 'Please Login!!',
+width: 600,
+padding: '3em',
+color: '#716add',
+background: '#fff url(https://cdn.dribbble.com/users/289158/screenshots/17424235/media/cbb5c66fa688ad46ea08f5f817d37a98.jpg?compress=1&resize=400x300&vertical=top)',
+backdrop: `
+  rgba(0,0,123,0.4)
+  url("https://sweetalert2.github.io/images/nyan-cat.gif")
+  left top
+  no-repeat
+`
+})
+          }
+          
+
+        
+      })
+    })
+  }
+</script>
+
+
+
+

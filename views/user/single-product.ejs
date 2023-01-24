@@ -1,0 +1,149 @@
+<%- include('../user/partials/head.ejs') %>
+
+<%- include('../user/partials/navigation.ejs') %>
+
+  
+    <!-- Header part end-->
+
+  <!-- breadcrumb start-->
+ 
+  <!-- breadcrumb start-->
+  <!--================End Home Banner Area =================-->
+
+  <!--================Single Product Area =================-->
+  <div style="margin-top: 20%;" class="product_image_area section_padding">
+    <div class="container">
+      <div class="row s_product_inner justify-content-between">
+        <div class="col-lg-7 col-xl-7">
+          <div class="product_slider_img">
+            <div id="vertical">
+              <div data-thumb="img/product/single-product/product_1.png">
+                <img width="500px" height="500px" src="/product_img/<%= viewproduct.thumbnail %>" />
+              </div>
+               <!-- <div data-thumb="img/product/single-product/product_1.png">
+                <img src="img/product/single-product/product_1.png" />
+              </div> -->
+              <!-- <div data-thumb="img/product/single-product/product_1.png">
+                <img src="img/product/single-product/product_1.png" />
+              </div>
+              <div data-thumb="img/product/single-product/product_1.png">
+                <img src="img/product/single-product/product_1.png" />
+              </div>  -->
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5 col-xl-4">
+          <div class="s_product_text">
+            <!-- <h5>previous <span>|</span> next</h5> -->
+            <h3><%= viewproduct.title %></h3>
+            <h2>₹<%= viewproduct.price %></h2>
+            <ul class="list">
+              <li>
+                <a class="active" href="#">
+                  <span>Category</span> : <%= viewproduct.category.title%></a>
+              </li>
+              <!-- <li>
+                <a href="#"> <span>Availibility</span> : In Stock</a>
+              </li> -->
+            </ul>
+            <p>
+              <%= viewproduct.description %>
+            </p>
+            <div class="card_area d-flex justify-content-between align-items-center">
+              <!-- <div class="product_count">
+                <span class="inumber-decrement"> <i class="ti-minus"></i></span>
+                <input class="input-number" type="text" value="1" min="0" max="10">
+                <span class="number-increment"> <i class="ti-plus"></i></span>
+              </div> -->
+              <a onclick="addToCart('<%= viewproduct._id %>')" class="btn_3">add to cart</a>
+              <a href="/update-wishlist/<%= viewproduct?._id %>" class="like_us"> <i class="ti-heart"></i> </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--================End Single Product Area =================-->
+
+  <!--================End Product Description Area =================-->
+
+ 
+              <P><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></P>
+          
+  <!--::footer_part end::-->
+
+  <!-- jquery plugins here-->
+  <!-- jquery -->
+  <script src="js/jquery-1.12.1.min.js"></script>
+  <!-- popper js -->
+  <script src="js/popper.min.js"></script>
+  <!-- bootstrap js -->
+  <script src="js/bootstrap.min.js"></script>
+  <!-- easing js -->
+  <script src="js/jquery.magnific-popup.js"></script>
+  <!-- swiper js -->
+  <script src="js/lightslider.min.js"></script>
+  <!-- swiper js -->
+  <script src="js/masonry.pkgd.js"></script>
+  <!-- particles js -->
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.nice-select.min.js"></script>
+  <!-- slick js -->
+  <script src="js/slick.min.js"></script>
+  <script src="js/swiper.jquery.js"></script>
+  <script src="js/jquery.counterup.min.js"></script>
+  <script src="js/waypoints.min.js"></script>
+  <script src="js/contact.js"></script>
+  <script src="js/jquery.ajaxchimp.min.js"></script>
+  <script src="js/jquery.form.js"></script>
+  <script src="js/jquery.validate.min.js"></script>
+  <script src="js/mail-script.js"></script>
+  <script src="js/stellar.js"></script>
+  <!-- custom js -->
+  <script src="js/theme.js"></script>
+  <script src="js/custom.js"></script>
+
+  <script>
+		function addToCart(proId){
+			
+			$.ajax({
+				url:'/addCartHome',
+				method:'post',
+				data:{
+					productId : proId
+				},
+				success:((response)=>{
+                    swal("successfully!", "You added product to Cart!", "success");
+					    if(response.access){
+							document.getElementById('count').innerHTML=response.count
+						document.getElementById(proId).value=response.status
+                    document.getElementById('total').innerHTML=response.total
+                    
+						}else{
+							swal({
+  title: 'Please Login!!',
+  width: 600,
+  padding: '3em',
+  color: '#716add',
+  background: '#fff url(https://cdn.dribbble.com/users/289158/screenshots/17424235/media/cbb5c66fa688ad46ea08f5f817d37a98.jpg?compress=1&resize=400x300&vertical=top)',
+  backdrop: `
+    rgba(0,0,123,0.4)
+    url("https://sweetalert2.github.io/images/nyan-cat.gif")
+    left top
+    no-repeat
+  `
+})
+						}
+						
+
+					
+				})
+			})
+		}
+	</script>
+
+</body>
+
+</html>

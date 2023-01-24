@@ -1,0 +1,444 @@
+
+<%- include('../user/partials/head.ejs') %>
+
+
+
+<%- include('../user/partials/navigation.ejs') %>
+
+    <!-- Header part end-->
+
+    <!--================Home Banner Area =================-->
+    <!-- breadcrumb start-->
+    <!-- <section class="breadcrumb breadcrumb_bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="breadcrumb_iner">
+                        <div class="breadcrumb_iner_item">
+                            <h2>Shop Category</h2>
+                            <p>Home <span>-</span> Shop Category</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <!-- breadcrumb start-->
+
+    <!--================Category Product Area =================-->
+    <section style="margin-top: 15%;" class="cat_product_area section_padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="left_sidebar_area">
+                        <aside class="left_widgets p_filter_widgets">
+                            <div class="l_w_title">
+                                <h3>Browse Categories</h3>
+                            </div>
+                            <div class="widgets_inner">
+                                <ul class="list">
+                                    <% type.forEach(element => { %> 
+                                    <%if(element.access==true){%>
+
+                                    <li>
+                                    <a href="/category?id=<%= element._id %> "> <%= element.title %></a> 
+                                     
+                                    </li>
+                                    <%}%> <% }) %>
+                                    <!-- <li>
+                                        <a href="#">Dried Fish</a>
+                                        <span>(250)</span>
+                                    </li>
+                                    <li>
+                                        <a href="#">Fresh Fish</a>
+                                        <span>(250)</span>
+                                    </li>
+                                    <li>
+                                        <a href="#">Meat Alternatives</a>
+                                        <span>(250)</span>
+                                    </li>
+                                    <li>
+                                        <a href="#">Fresh Fish</a>
+                                        <span>(250)</span>
+                                    </li>
+                                    <li>
+                                        <a href="#">Meat Alternatives</a>
+                                        <span>(250)</span>
+                                    </li>
+                                    <li>
+                                        <a href="#">Meat</a>
+                                        <span>(250)</span>
+                                    </li> -->
+                                </ul>
+                            </div>
+                        </aside>
+
+                        <!-- <aside class="left_widgets p_filter_widgets">
+                            <div class="l_w_title">
+                                <h3>Product filters</h3>
+                            </div>
+                            <div class="widgets_inner">
+                                <ul class="list">
+                                    <li>
+                                        <a href="#">Apple</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Asus</a>
+                                    </li>
+                                    <li class="active">
+                                        <a href="#">Gionee</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Micromax</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Samsung</a>
+                                    </li>
+                                </ul>
+                                <ul class="list">
+                                    <li>
+                                        <a href="#">Apple</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Asus</a>
+                                    </li>
+                                    <li class="active">
+                                        <a href="#">Gionee</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Micromax</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Samsung</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </aside> -->
+
+                        <!-- <aside class="left_widgets p_filter_widgets">
+                            <div class="l_w_title">
+                                <h3>Color Filter</h3>
+                            </div>
+                            <div class="widgets_inner">
+                                <ul class="list">
+                                    <li>
+                                        <a href="#">Black</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Black Leather</a>
+                                    </li>
+                                    <li class="active">
+                                        <a href="#">Black with red</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Gold</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Spacegrey</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </aside> -->
+
+                        <!-- <aside class="left_widgets p_filter_widgets price_rangs_aside">
+                            <div class="l_w_title">
+                                <h3>Price Filter</h3>
+                            </div>
+                            <div class="widgets_inner">
+                                <div class="range_item"> -->
+                                    <!-- <div id="slider-range"></div> -->
+                                    <!-- <input type="text" class="js-range-slider" value="" />
+                                    <div class="d-flex">
+                                        <div class="price_text">
+                                            <p>Price :</p>
+                                        </div>
+                                        <div class="price_value d-flex justify-content-center">
+                                            <input type="text" class="js-input-from" id="amount" readonly />
+                                            <span>to</span>
+                                            <input type="text" class="js-input-to" id="amount" readonly />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </aside> -->
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="product_top_bar d-flex justify-content-between align-items-center">
+                                <div class="single_product_menu">
+                                    <p><span> </span> Products</p>
+                                </div>
+                                <!-- <div class="single_product_menu d-flex">
+                                    <h5>short by : </h5>
+                                    <select>
+                                        <option data-display="Select">name</option>
+                                        <option value="1">price</option>
+                                        <option value="2">product</option>
+                                    </select>
+                                </div> -->
+                                <!-- <div class="single_product_menu d-flex">
+                                    <h5>show :</h5>
+                                    <div class="top_pageniation">
+                                        <ul>
+                                            <li>1</li>
+                                            <li>2</li>
+                                            <li>3</li>
+                                        </ul>
+                                    </div>
+                                </div> -->
+                                <div class="single_product_menu d-flex">
+                                    <div class="input-group">
+                                        <form action="" method="get" class="form-outline d-flex">
+                                        <input type="search" id="searchInput" class="form-control" placeholder="search"
+                                          name="search" onkeyup="searchIt(this.value)">
+                                        <div class="input-group-prepend">
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="fas fa-search"></i>
+                                              </button>
+                                            </form>
+                                            <!-- <span class="input-group-text" id="inputGroupPrepend"><i
+                                                    class="ti-search"></i></span> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center latest_product_inner">
+                        <% product.forEach(function(x){ %>
+                        <div class="col-lg-4 col-sm-6">
+                          
+                            <div class="single_product_item">
+                                <img src="/product_img/<%= x.thumbnail %>" alt="">
+                                <div class="single_product_text">
+                                    <h4><%= x.title %></h4>
+                                    <h3><%= x.price %></h3>
+                                    <div class="d-flex">
+                                    <!-- <a href="/add-to-cart?id=<%= x._id%>" class="add_cart">+ add to cart<i class="ml-5"></i></a> -->
+                                    <a onclick="addToCart('<%= x._id %>')" class="add_cart">+ Add to Cart<i class=""></i></a>
+
+                                    <a href="/update-wishlist/<%= x?._id %>" class="like_us ml-4"> <i class="ti-heart"></i> </a>
+                                </div>
+                                    <% if (user) { %>
+
+                                       
+                                     
+                                    <% }else{ %>
+                                        
+                                    <% } %>
+
+                                </div>
+                            </div>
+                           
+                        </div>
+                        <% }) %>
+                        <!-- <div class="col-lg-4 col-sm-6">
+                            <div class="single_product_item">
+                                <img src="img/product/product_2.png" alt="">
+                                <div class="single_product_text">
+                                    <h4>Quartz Belt Watch</h4>
+                                    <h3>$150.00</h3>
+                                    <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
+                                </div>
+                            </div>
+                        </div> -->
+                        <!-- <div class="col-lg-4 col-sm-6">
+                            <div class="single_product_item">
+                                <img src="img/product/product_3.png" alt="">
+                                <div class="single_product_text">
+                                    <h4>Quartz Belt Watch</h4>
+                                    <h3>$150.00</h3>
+                                    <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="single_product_item">
+                                <img src="img/product/product_4.png" alt="">
+                                <div class="single_product_text">
+                                    <h4>Quartz Belt Watch</h4>
+                                    <h3>$150.00</h3>
+                                    <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="single_product_item">
+                                <img src="img/product/product_5.png" alt="">
+                                <div class="single_product_text">
+                                    <h4>Quartz Belt Watch</h4>
+                                    <h3>$150.00</h3>
+                                    <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="single_product_item">
+                                <img src="img/product/product_6.png" alt="">
+                                <div class="single_product_text">
+                                    <h4>Quartz Belt Watch</h4>
+                                    <h3>$150.00</h3>
+                                    <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="single_product_item">
+                                <img src="img/product/product_7.png" alt="">
+                                <div class="single_product_text">
+                                    <h4>Quartz Belt Watch</h4>
+                                    <h3>$150.00</h3>
+                                    <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="single_product_item">
+                                <img src="img/product/product_8.png" alt="">
+                                <div class="single_product_text">
+                                    <h4>Quartz Belt Watch</h4>
+                                    <h3>$150.00</h3>
+                                    <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="single_product_item">
+                                <img src="img/product/product_2.png" alt="">
+                                <div class="single_product_text">
+                                    <h4>Quartz Belt Watch</h4>
+                                    <h3>$150.00</h3>
+                                    <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="col-lg-12">
+                            <div class="pageination">
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination justify-content-center">
+                                        <li class="page-item d-flex">
+                                            <% if(hasPreviousPage){ %>
+                                            <a class="page-link " href="/categorypage?page=<%= PreviousPage %>" aria-label="Previous">
+                                                <i class="ti-angle-double-left"></i>
+                                            </a>
+                                            <% } %>
+                                            <a class="page-link" href="/categorypage?page=<%= page %>" aria-label="Next">
+                                                <i class=""></i>
+                                                <%= page %>
+                                            </a>
+                                       
+                                            <% if(hasNextPage) { %>
+                                            <a class="page-link" href="/categorypage?page=<%= page+1 %>" aria-label="Next">
+                                                <i class="ti-angle-double-right"></i>
+                                            </a>
+                                            <% } %>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End Category Product Area =================-->
+
+    <!-- product_list part start-->
+   
+    <!-- product_list part end-->
+
+
+
+    <%- include('../user/partials/end.ejs') %>
+
+    <script>
+		function addToCart(proId){
+			
+			$.ajax({
+				url:'/addCartHome',
+				method:'post',
+				data:{
+					productId : proId
+				},
+				success:((response)=>{
+                    swal("successfully!", "You added product to Cart!", "success");
+					    if(response.access){
+							document.getElementById('count').innerHTML=response.count
+						document.getElementById(proId).value=response.status
+                    document.getElementById('total').innerHTML=response.total
+                    
+						}else{
+							swal({
+  title: 'Please Login!!',
+  width: 600,
+  padding: '3em',
+  color: '#716add',
+  background: '#fff url(https://cdn.dribbble.com/users/289158/screenshots/17424235/media/cbb5c66fa688ad46ea08f5f817d37a98.jpg?compress=1&resize=400x300&vertical=top)',
+  backdrop: `
+    rgba(0,0,123,0.4)
+    url("https://sweetalert2.github.io/images/nyan-cat.gif")
+    left top
+    no-repeat
+  `
+})
+						}
+						
+
+					
+				})
+			})
+		}
+	</script>
+
+<script>
+    // function searchIt(str) {
+    //     fetch('/productSearching?category=' + str, {
+    //         method: "GET",
+    //         headers: {
+    //             'Content-type': 'application/json'
+    //         },
+    //         body: JSON.stringify()
+    //     })
+    //         .then(res => {
+    //             return res.json()
+    //         })
+    //         .then(data => {
+    //             document.getElementById('searchData').innerHTML = '';
+    //             console.log(data)
+    //             document.getElementById('searchInput')
+    //             if (str.length == 0) {
+    //                 document.getElementById('searchData').innerHTML = '';
+    //             } else {
+    //                 if (data.length == 0) {
+    //                     document.getElementById('searchData').innerHTML = 'not found';
+    //                 } else {
+    //                     data.forEach(e => {
+    //                         document.getElementById('searchData').innerHTML += `<li><a href="">${e.tittle}</a></li>`;
+    //                     });
+    //                 }
+    //             }
+    //             document.getElementById('searchInput')
+    //         })
+    //         .catch(e => {
+    //             console.log("ERROR!!! " + e);
+    //         })
+    // }
+
+    function searchIt(str) {
+        axios
+    .get(`http://localhost:7000/movies`, {
+        params: { search: str },
+    
+    })
+    .then(function (response) {
+        console.log(response.data);
+    })
+    .catch(function (error) {
+        console.error(error);
+    });
+    }
+</script>

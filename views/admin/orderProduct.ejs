@@ -1,0 +1,72 @@
+<%- include('../admin/partials/header.ejs') %>
+
+<main class="h-full pb-16 overflow-y-auto">
+    <div class="container px-6 mx-auto grid">
+      <h2
+        class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
+      >
+        Cart Products
+      </h2>
+      <!-- TABLE -->
+      <!-- products table content start -->
+      <!-- <h4
+        class="mt-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
+      >
+        Curtain
+      </h4> -->
+      
+        <% productlist.productIds.forEach((val)=>{ %>
+      <div
+      class="p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
+    >
+     
+      <div
+      style="width: 200px; height: 200px;"  class="p-3 mr-4 "
+      >
+      <img  
+      class="object-cover"
+      src="/product_img/<%=val.product_id.thumbnail %>"
+      alt=""
+      loading="lazy"
+    />
+      </div>
+
+      <div class="col-9 text-white">
+        <h5 >
+         Title :   <%=val.product_id.title %>
+
+        </h5>
+        <p>
+          Price :  <%=val.product_id.price %>
+        </p>
+        <p>
+          Quantity :  <%=val.qty %>
+        </p>
+        <h6 >
+          Description :  <%=val.product_id.description%>
+        </h6>
+      </div>
+      
+      <!-- <div>
+        <p
+          class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400"
+        >
+          New sales
+        </p>
+        <p
+          class="text-lg font-semibold text-gray-700 dark:text-gray-200"
+        >
+          376
+        </p>
+      </div> -->
+    </div>
+    <% })%>
+
+
+
+
+
+
+  
+
+<%- include('../admin/partials/footer.ejs') %>

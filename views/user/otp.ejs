@@ -1,0 +1,108 @@
+
+<%- include('../user/partials/head.ejs') %>
+    <!-- breadcrumb start-->
+    <!-- <section class="breadcrumb breadcrumb_bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="breadcrumb_iner">
+                        <div class="breadcrumb_iner_item">
+                            <h2>OTP</h2>
+                            <p>Home <span>-</span> OTP</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <!-- breadcrumb start-->
+
+    <!--================login_part Area =================-->
+    <section class="login_part padding_top">
+        <div class="container">
+            <div class="row align-items-center">
+               <!-- <div class="col-lg-6 col-md-6">
+                    <div class="login_part_text text-center">
+                        <div class="login_part_text_iner">
+                            <h2>New to our Shop?</h2>
+                            <p>There are advances being made in science and technology
+                                everyday, and a good example of this is the</p>
+                            <a href="#" class="btn_3">Create an Account</a>
+                        </div>
+                    </div>
+                </div>  -->
+                <div class="col-lg-6 col-md-6">
+                    <div class="login_part_form">
+                        <div class="login_part_form_iner">
+                            <h3>Welcome Back ! <br>
+                                Please Enter otp now</h3>
+                            <form class="row contact_form" action="/otp" method="post" >
+                                <!-- <div class="col-md-12 form-group p_star">
+                                    <input type="text" class="form-control" id="name" name="email" value=""
+                                        placeholder="email">
+                                </div> -->
+                                <div class="countdown"></div>
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="otp" class="form-control" id="otp" name="otpis" value=""
+                                        placeholder="otp">
+                                </div>
+                                <div id="some_div"></div>
+                                <div class="col-md-12 form-group">
+                                    <div class="creat_account d-flex align-items-center">
+                                        <!-- <input type="checkbox" id="f-option" name="selector">
+                                        <label for="f-option">Remember me</label> -->
+                                    </div>
+                                    <button type="submit" value="submit" class="btn_3">
+                                        submit otp
+                                    </button>
+                                    <!-- <a class="lost_pass" href="#">forget password?</a> -->
+                                </div>
+                            </form>
+                            <form class="row contact_form" action="/resendotp" method="get" >
+                              
+                                    <button type="submit" id="my_button" value="submit" onclick="countdown()" class="btn_3">
+                                        Resend otp
+                                    </button>
+                                </form>
+                                    <!-- <a class="lost_pass" href="#">Resend OTP</a> -->
+                                </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================login_part end =================-->
+
+
+
+
+
+    <%- include('../user/partials/end.ejs') %>
+
+
+    <script>
+       
+       var timeLeft = 30;
+var elem = document.getElementById('some_div');
+var timerId = setInterval(countdown, 1000);
+
+function countdown() {
+    document.getElementById("my_button").style.visibility = "hidden";
+    if (timeLeft == -1) {
+        clearTimeout(timerId);
+        doSomething();
+    } else {
+        elem.innerHTML = timeLeft + ' seconds remaining';
+        timeLeft--;
+    }
+}
+
+function doSomething() {
+    
+    document.getElementById("my_button").style.visibility = "visible";
+}
+
+
+    </script>

@@ -1,0 +1,35 @@
+</div>
+</div>
+
+<script>
+function modalSaveDetails([header,description,images]){
+  // document.getElementById('modal-header').innerHTML=dataObj[0];
+  // document.getElementById('modal-description').innerHTML=dataObj[1];
+  document.getElementById('modal-header').innerHTML=header;
+  document.getElementById('modal-description').innerHTML=description;
+  console.log(images);
+  let imagesArray = images.toString().split(',')
+  console.log(imagesArray);
+
+  
+  imagesArray = imagesArray.map(element => {
+    return `<img src="/product_img/${element}" width="200px" style="display: inline;">`
+  });
+  document.getElementById('images').innerHTML=imagesArray.join('')
+  
+  
+}
+
+
+
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>
