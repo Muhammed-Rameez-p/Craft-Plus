@@ -831,6 +831,7 @@ module.exports = {
 
   getAllProducts: async (req, res) => {
     try {
+      const count = null
       const page = parseInt(req.query.page) || 1
       const limit = 9
       // const categoryId = req.query.categoryItem || ''
@@ -865,6 +866,7 @@ module.exports = {
         user: req.session.user,
         product,
         type,
+        count,
         page,
         hasNextPage: limit * page < total,
         hasPreviousPage: page > 1,
