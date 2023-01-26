@@ -34,8 +34,7 @@ app.use(
   })
 )
 app.use(flash())
-
-mongoose.connect('mongodb://127.0.0.1/amazon', {
+mongoose.connect(process.env.DATABASE_LOCAL, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
   useCreateIndex: true
