@@ -1,7 +1,7 @@
 const express = require('express')
-const { getAdminLogin, adminPost, getAddCategory, getAdminUsers, blockUser, unblockUser, getCategory, addCategory, getEditCategory, editCategory, getAdminProducts, getAddProductPage, editProduct, uploadProduct, getEditProductPage, listProduct, unlistProduct, listcategory, unlistcategory, getCoupon, getAddCoupon, addCoupon, getEditCoupon, editCoupon, deleteCoupon, getAdminOrders, getBanner, getAddBanner, postaddBanner, getEditBanner, posteditBanner, deleteBanner, getAdminDashboard, changeStatus, getOrderProduct, dailyReport, monthReport, yearReport, dayInvoice, getLogout, monthInvoice, yearInvoice } = require('../controllers/adminController')
-const { adminLoginCheck } = require('../middleware/adminLoginCheck')
-const { uploadOne, uploadMultiple, uploadBannerImg } = require('../middleware/multerMiddleware')
+const { getAdminLogin, adminPost, getAddCategory, getAdminUsers, blockUser, unblockUser, getCategory, addCategory, getEditCategory, editCategory, getAdminProducts, getAddProductPage, editProduct, uploadProduct, getEditProductPage, listProduct, unlistProduct, listcategory, unlistcategory, getCoupon, getAddCoupon, addCoupon, getEditCoupon, editCoupon, deleteCoupon, getAdminOrders, getBanner, getAddBanner, postaddBanner, getEditBanner, posteditBanner, deleteBanner, getAdminDashboard, changeStatus, getOrderProduct, dailyReport, monthReport, yearReport, dayInvoice, getLogout, monthInvoice, yearInvoice } = require('../controllers/admin-controller')
+const { adminLoginCheck } = require('../middleware/admin-login-check')
+const { uploadOne, uploadMultiple, uploadBannerImg } = require('../middleware/multer-middleware')
 const router = express.Router()
 // Admin loging
 router.get('/', getAdminLogin)

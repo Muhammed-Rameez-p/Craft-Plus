@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router()
-const { postlogin, singup, postsingupview, postotp, postResendOtp, getUserHome, categorylisting, productpage, categorypage, getReset, postReset, getNewPassword, postResetPassword, getCart, getLoging, getHome, getAddcart, addCartHome, ChangeQuantity, addaddress, newaddress, getprofile, getotp, getWish, updateWishlist, getcheckout, DeleteWishlist, getsingleProduct, updateProfile, editprofilepage, productSearching, orderconfirm, editAddress, getOrders, couponCheck, Addgetcheckout, addCart, orderSuccess, getOrderData, payment, deleteAddress, getSearch, getContact, getAllProducts, getUserLogout } = require('../controllers/userController')
-const { verifyAjaxUser } = require('../middleware/ajaxAuth')
-const { userLoginCheck } = require('../middleware/adminLoginCheck')
+const { postlogin, singup, postsingupview, postotp, postResendOtp, getUserHome, categorylisting, productpage, categorypage, getReset, postReset, getNewPassword, postResetPassword, getCart, getLoging, getHome, getAddcart, addCartHome, ChangeQuantity, addaddress, newaddress, getprofile, getotp, getWish, updateWishlist, getcheckout, DeleteWishlist, getsingleProduct, updateProfile, editprofilepage, productSearching, orderconfirm, editAddress, getOrders, couponCheck, Addgetcheckout, addCart, orderSuccess, getOrderData, payment, deleteAddress, getSearch, getContact, getAllProducts, getUserLogout } = require('../controllers/user-controller')
+const { verifyAjaxUser } = require('../middleware/ajax-auth')
+const { userLoginCheck } = require('../middleware/admin-login-check')
 // Home & Loging
 router.get('/', getUserHome)
 router.get('/home', getHome)

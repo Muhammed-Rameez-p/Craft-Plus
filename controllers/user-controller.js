@@ -1,14 +1,14 @@
 const User = require('../models/user')
-const Category = require('../models/categoryModel')
-const Product = require('../models/productModel')
-const AddressModel = require('../models/addressModel')
-const Wishlist = require('../models/wishlistModel')
-const OrderModel = require('../models/orderModel')
-const Banner = require('../models/bannerModel')
+const Category = require('../models/category-model')
+const Product = require('../models/product-model')
+const AddressModel = require('../models/address-model')
+const Wishlist = require('../models/wishlist-model')
+const OrderModel = require('../models/order-model')
+const Banner = require('../models/banner-model')
 const Coupons = require('../models/coupon')
 const Razorpay = require('razorpay')
 const bcrypt = require('bcrypt')
-const { dologing } = require('./userData')
+const { dologing } = require('./user-data')
 const { sendotp, verifyotp } = require('../util/otp')
 const crypto = require('crypto')
 const nodemailer = require('nodemailer')
@@ -755,7 +755,7 @@ module.exports = {
   },
 
   orderSuccess: (req, res) => {
-    res.render('user/orderSuccess')
+    res.render('user/order-success')
   },
 
   getOrderData: async (req, res) => {

@@ -1,6 +1,6 @@
 const user = require('../models/user')
 const bcrypt = require('bcrypt')
-const Product = require('../models/productModel')
+const Product = require('../models/product-model')
 
 module.exports = {
   dologing: async (userlog) => {

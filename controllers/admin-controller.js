@@ -1,13 +1,13 @@
-const Category = require('../models/categoryModel')
-const Order = require('../models/orderModel')
+const Category = require('../models/category-model')
+const Order = require('../models/order-model')
 const Coupon = require('../models/coupon')
 const user = require('../models/user')
-const Product = require('../models/productModel')
-const Banner = require('../models/bannerModel')
-const Admin = require('../models/adminModel')
-const { getAllClients } = require('./userData')
+const Product = require('../models/product-model')
+const Banner = require('../models/banner-model')
+const Admin = require('../models/admin-model')
+const { getAllClients } = require('./user-data')
 const mongoose = require('mongoose')
-const orderModel = require('../models/orderModel')
+const orderModel = require('../models/order-model')
 
 module.exports = {
 
@@ -522,7 +522,7 @@ module.exports = {
       console.log('proiddddddd', proId)
       const productlist = await orderModel.findOne({ _id: proId })
         .sort({ _id: -1 }).populate('userId').populate('productIds.product_id')
-      res.render('admin/orderProduct', { productlist, pageIn: req.session.pageIn })
+      res.render('admin/order-product', { productlist, pageIn: req.session.pageIn })
     } catch (err) {
       res.json('Something wrong, please try again')
     }
@@ -551,7 +551,7 @@ module.exports = {
         }
       }
     ])
-    res.render('admin/dailyReport', { sales, pageIn: req.session.pageIn })
+    res.render('admin/daily-report', { sales, pageIn: req.session.pageIn })
   },
 
   monthReport: async (req, res) => {
@@ -581,7 +581,7 @@ module.exports = {
       newOne._id.month = months[newOne._id.month - 1]
       return newOne
     })
-    res.render('admin/monthlyReport', { sales, pageIn: req.session.pageIn })
+    res.render('admin/monthly-report', { sales, pageIn: req.session.pageIn })
   },
 
   yearReport: async (req, res) => {
@@ -602,7 +602,7 @@ module.exports = {
         $sort: { '_id.year': -1 }
       }
     ])
-    res.render('admin/yearlyReport', { sales, pageIn: req.session.pageIn })
+    res.render('admin/yearly-report', { sales, pageIn: req.session.pageIn })
   },
 
   dayInvoice: async (req, res) => {

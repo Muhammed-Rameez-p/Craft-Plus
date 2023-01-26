@@ -1,6 +1,6 @@
 /* eslint-disable no-new-wrappers */
 const mongoose = require('mongoose')
-const products = require('./productModel')
+const products = require('./product-model')
 
 const userSchema = new mongoose.Schema({
 
