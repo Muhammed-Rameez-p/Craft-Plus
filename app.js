@@ -5,7 +5,6 @@ if (process.env.NODE_ENV !== 'production') {
 const mongoose = require('mongoose')
 
 const flash = require('connect-flash')
-// const multer = require('multer')
 const nocache = require('nocache')
 
 const path = require('path')
@@ -16,7 +15,6 @@ const session = require('express-session')
 
 const adminRoutes = require('./routes/admin')
 const shopRoutes = require('./routes/shop')
-// const { getMaxListeners } = require('process')
 
 app.set('view engine', 'ejs')
 app.set('views', 'views')
