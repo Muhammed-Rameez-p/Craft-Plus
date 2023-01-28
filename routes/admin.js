@@ -5,7 +5,9 @@ const {
   getEditProductPage, listProduct, unlistProduct, listcategory, unlistcategory, getCoupon, getAddCoupon, addCoupon,
   getEditCoupon, editCoupon, deleteCoupon, getAdminOrders, getBanner, getAddBanner, postaddBanner, getEditBanner, posteditBanner,
   deleteBanner, getAdminDashboard, changeStatus, getOrderProduct, dailyReport, monthReport, yearReport, dayInvoice, getLogout, monthInvoice,
-  yearInvoice
+  yearInvoice,
+  getSalesDate,
+  toSalesReport
 } = require('../controllers/admin-controller')
 const { adminLoginCheck } = require('../middleware/admin-login-check')
 const { uploadOne, uploadMultiple, uploadBannerImg } = require('../middleware/multer-middleware')
@@ -59,6 +61,8 @@ router.get('/changeStatus', changeStatus)
 router.get('/dailyReport', adminLoginCheck, dailyReport)
 router.get('/monthlyReport', adminLoginCheck, monthReport)
 router.get('/yearlyReport', adminLoginCheck, yearReport)
+router.get('/salesReportDate', adminLoginCheck, getSalesDate)
+router.post('/salesReportDate', adminLoginCheck, toSalesReport)
 // Download PDF
 router.get('/dayInvoice', dayInvoice)
 router.get('/monthInvoice', monthInvoice)

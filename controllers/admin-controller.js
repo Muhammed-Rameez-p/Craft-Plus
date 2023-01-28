@@ -680,5 +680,62 @@ module.exports = {
       }
     ])
     res.render('admin/year-invoice', { sales, pageIn: req.session.pageIn })
+  },
+
+  getSalesDate: (req, res) => {
+    try {
+      req.session.pageIn = 'sales'
+      res.render('admin/sales-date', { pageIn: req.session.pageIn })
+    } catch (err) {
+      console.log(err)
+    }
+  },
+
+  toSalesReport: async (req, res) => {
+    try {
+      req.session.pageIn = 'sales'
+      const sales = await orderModel.aggregate([
+        {
+          $match: {
+            orderstat: { $eq: 'DELIVERED' },
+            $and: [
+              { createdAt: { $gt: new Date(req.body.from) } },
+              { createdAt: { $lt: new Date(req.body.to) } }
+            ]
+          }
+        },
+        {
+          $group: {
+            _id: {
+              year: { $year: '$date' },
+              month: { $month: '$date' },
+              day: { $dayOfMonth: '$date' }
+            },
+            totalPrice: { $sum: '$grandTotal' },
+            items: { $sum: { $size: '$productIds' } },
+            count: { $sum: 1 }
+          }
+        },
+        // {
+        //   $lookup: {
+        //     from: 'User',
+        //     localField: 'userId',
+        //     foreignField: '_id',
+        //     as: 'userData'
+        //   }
+        // },
+        {
+          $sort: { createdAt: -1 }
+        }
+      ])
+      console.log(sales)
+      res.render('admin/date-report', {
+        sales,
+        pageIn: req.session.pageIn
+      })
+    } catch (error) {
+      console.log(error)
+      error.admin = true
+    }
   }
 }

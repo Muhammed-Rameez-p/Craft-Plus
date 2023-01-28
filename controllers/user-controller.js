@@ -279,7 +279,7 @@ module.exports = {
             subject: 'password reseted',
             html: `
                <p>You Requested  a Password reset </p>
-                <p>Click this <a href="http://localhost:7000/resets?token=${token}">link</a> to set a passwor</p>
+                <p>Click this <a href="http://localhost:3000/resets?token=${token}">link</a> to set a passwor</p>
         `
           }
           mailer.sendMail(emails, function (err, res) {

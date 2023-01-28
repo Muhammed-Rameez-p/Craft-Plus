@@ -47,4 +47,4 @@ app.use((req, res, next) => {
   res.status(404).render('user/404')
 })
 
-app.listen(process.env.PORT || 7000)
+app.listen(process.env.PORT || 3000)
