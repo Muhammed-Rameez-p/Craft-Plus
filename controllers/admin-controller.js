@@ -8,6 +8,8 @@ const Admin = require('../models/admin-model')
 const { getAllClients } = require('./user-data')
 const mongoose = require('mongoose')
 const orderModel = require('../models/order-model')
+const cloudinary = require('../helper/image-upload')
+const path = require('path')
 
 module.exports = {
 
@@ -161,7 +163,6 @@ module.exports = {
       const itemsPerPage = 9
       const totalproducts = await Product.find().countDocuments()
       const products = await Product.find().populate('category').skip((page - 1) * itemsPerPage).limit(itemsPerPage)
-      console.log('eeeeeeeeee', products)
       req.session.pageIn = 'products'
       res.render('admin/product_management', {
         hasNextPage: itemsPerPage * page < totalproducts,
@@ -197,7 +198,12 @@ module.exports = {
       req.files.images.forEach((el) => {
         img.push(el.filename)
       })
+      console.log('fileeee')
       Object.assign(req.body, { images: img, thumbnail })
+      const result = await cloudinary.uploader.upload(req.files.thumbnail[0].path, {
+        public_id: 'img-' + Date.now() + path.extname(req.files.thumbnail[0].originalname)
+      })
+      console.log('img---------', result)
       res.redirect('/admin/products')
     } catch (err) {
       console.log(err)
@@ -716,20 +722,12 @@ module.exports = {
             count: { $sum: 1 }
           }
         },
-        // {
-        //   $lookup: {
-        //     from: 'User',
-        //     localField: 'userId',
-        //     foreignField: '_id',
-        //     as: 'userData'
-        //   }
-        // },
         {
           $sort: { createdAt: -1 }
         }
       ])
       console.log(sales)
-      res.render('admin/date-report', {
+      res.render('admin/date-invoice', {
         sales,
         pageIn: req.session.pageIn
       })

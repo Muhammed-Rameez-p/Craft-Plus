@@ -48,15 +48,18 @@
 
                          
                                     <%}%> <% }) %>
-                                    <!-- <li>
-                                        <a href="#">Dried Fish</a>
-                                        <span>(250)</span>
+                                   
+                                     <li>
+                                        <div class="left_widgets l_w_title">
+                                            <h3>Sort</h3>
+                                        </div>
+                                        
                                     </li>
-                                    <li>
-                                        <a href="#">Fresh Fish</a>
-                                        <span>(250)</span>
+                                     <li>
+                                       <a href="/allProduct?sort=price">Price</a>
+                                        <span></span>
                                     </li>
-                                    <li>
+                                   <!-- <li>
                                         <a href="#">Meat Alternatives</a>
                                         <span>(250)</span>
                                     </li>
@@ -71,7 +74,7 @@
                                     <li>
                                         <a href="#">Meat</a>
                                         <span>(250)</span>
-                                    </li> -->
+                                    </li>  -->
                                 </ul>
                             </div>
                         </aside>
@@ -170,17 +173,17 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="product_top_bar d-flex justify-content-between align-items-center">
-                                <div class="single_product_menu">
-                                    <p><span> </span> Products</p>
+                                 <div class="single_product_menu">
+                                    <!-- <p><span> </span> Products</p> -->
                                 </div>
                                 <div class="single_product_menu d-flex">
-                                    <h5>short by : </h5>
+                                    <!-- <h5>short by : </h5>
                                     <select>
                                       <option data-display="Select">name</option>
                                     
                                         
-                                    </select>
-                                </div>
+                                    </select> -->
+                                </div> 
                                 <!-- <div class="single_product_menu d-flex">
                                     <h5>show :</h5>
                                     <div class="top_pageniation">
@@ -193,7 +196,7 @@
                                 </div> -->
                                 <div class="single_product_menu d-flex">
                                     <div class="input-group">
-                                        <form action="" method="get" class="form-outline d-flex">
+                                        <form action=" " method="get" class="form-outline d-flex">
                                         <input type="search" id="searchInput" class="form-control" placeholder="search"
                                           name="search" onkeyup="searchIt(this)">
                                         <div class="input-group-prepend">
@@ -401,14 +404,14 @@
 
 
 <script>
-function buttonClicked(str) {
-alert(str)
+// function buttonClicked(str) {
+// alert(str)
 
-let url = new URL('http://localhost:3000/movies');
-let params = new URLSearchParams(url.categoryId);
+// let url = new URL('http://localhost:3000/movies');
+// let params = new URLSearchParams(url.categoryId);
 
 //Add a second foo parameter.
-params.append(categoryId, str);
+// params.append(categoryId, str);
 
 // let baseUrl = 'http://localhost:7000/movies';
 // let queryParams = {
@@ -425,7 +428,7 @@ params.append(categoryId, str);
 //     console.log(error);
 //   });
 
-}
+// }
    
 //     function searchIt(str) {
 //     $.ajax({
@@ -445,17 +448,17 @@ params.append(categoryId, str);
 
 
     
-    // function searchIt(str) {
-    //     axios
-    // .get(`http://localhost:7000/movies`, {
-    //     params: { search: str },
+    function searchIt(str) {
+        axios
+    .get(`http://localhost:3000/allProduct`, {
+        params: { search: str },
     
-    // })
-    // .then(function (response) {
-    //     console.log(response.data);
-    // })
-    // .catch(function (error) {
-    //     console.error(error);
-    // });
-    // }
+    })
+    .then(function (response) {
+        console.log(response.data);
+    })
+    .catch(function (error) {
+        console.error(error);
+    });
+    }
 </script>
