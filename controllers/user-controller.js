@@ -67,7 +67,6 @@ module.exports = {
         res.redirect('/')
       } else {
         req.session.loggederror = true
-        // req.flash('error', 'An Error occured while adding product to database')
         res.redirect('/log')
       }
     })
